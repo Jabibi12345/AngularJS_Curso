@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="utf-8">
+        <title>Filtrado y ordenación de datos</title>
+        <meta name="description" content="Curso de AngularJS">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="shortcut icon" type="image/x-icon" href="../iconBarra.jpg" />
+        <script src="../node_modules/angular/angular.js"></script>
+        <script src="../node_modules/angular-i18n/angular-locale_es-es.js"></script>
+        <script src="./js/app.js"></script>
+        <script src="./js/autores.controller.js"></script>
+    </head>
+    <body ng-app="appMain" ng-controller="AppAutoresController as $ctrl">
+        <h1>LISTA DE AUTORES</h1>
+        <form style="background-color: #FFFFCC; width: 80%">
+            <p>
+                <label for="selectOrden">Elige el orden que deseas</label>
+                <select ng-model="$ctrl.orden" ng-options="orden for orden in $ctrl.listOrden">
+                    <option value="">--Elige opcion--</option>
+                </select>
+            </p>
+            <p>
+                <label for="selectOrden">Elige el genero literario que deseas</label>
+                <select ng-model="$ctrl.genero" ng-options="genero.value for genero in $ctrl.listGeneros">
+                    <option value="">--Elige opcion--</option>
+                </select>
+            </p>
+            <br/>
+            <p><strong>Campos a mostar:</strong></p>
+            <p>
+               <label for="checkPais">Pais</label>
+               <input id="checkPais" type="checkbox" ng-model="$ctrl.verPais"></input>
+            </p>
+            <p>
+                <label for="checkFecha">Fecha de nacimiento</label>
+                <input id="checkFecha"  type="checkbox" ng-model="$ctrl.verFecha"></input>
+                </p>
+        </form>
+        <ul>
+            <li ng-repeat="autor in $ctrl.autores | filter: $ctrl.genero.value | orderBy: $ctrl.orden as filtered_result">
+                <b>{{autor.nombre}} <i>{{autor.apellido}}</i></b>
+                {{$ctrl.verPais ? " - "+ autor.pais: ''}}
+                {{$ctrl.verFecha ? "- Nacido el "+ (autor.fecha | date: 'longDate') : ''}}
+                - Genero: <span ng-repeat="genero in autor.generos">
+                {{genero}}{{!$last ? ",": "."}}</span>
+            </li>
+        </ul>
+        <div class="alert alert-info" ng-show="filtered_result.length == 0">
+            <strong>No results found...</strong>
+        </div>
+        
+        <br/><br/>
+        <ng-include src="'../footer_generic.html'"></ng-include>
+    </body>
+</html>

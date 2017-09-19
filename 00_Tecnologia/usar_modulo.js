@@ -1,4 +1,4 @@
-import { hello } from "modulo"; 
+import { hello } from "modulo.js"; 
 
 var app = { 
 	saludo : () => {
