@@ -6,31 +6,38 @@
         <meta name="description" content="Curso de AngularJS">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="shortcut icon" type="image/x-icon" href="../iconBarra.jpg" />
+        <link rel="stylesheet" type="text/css" href="../node_modules/bootstrap/dist/css/bootstrap-theme.min.css">
+        <link rel="stylesheet" type="text/css" href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
         <script src="../node_modules/angular/angular.js"></script>
         <script src="./js/app.js"></script>
         <script src="./js/acumulador.controller.js"></script>
     </head>
     <body ng-app="appMain" ng-controller="AppAcumuladorController as $ctrl">
         <h1>Control de operacion</h1>
-        <form style="background-color: #FFFFCC; width: 18%; height: 22%">
-            <p>
+        <form class="container" style="background-color: #FFFFCC;">
+            <div class="form-group">
                 <label for="inputIncremento">Incremento: </label>
-                <input id="inputIncremento" style="width: 60%"  type="number" ng-model="$ctrl.numero"></input>
-            </p>
-            <p>
-                <button style="width: 100%" ng-click="$ctrl.aumentar();">+</button>
+                <input id="inputIncremento" class="form-control" type="number" ng-model="$ctrl.numero"></input>
+            </div>
+            <div class="form-group">
+                <button class="btn btn-success" style="width: 100%" ng-click="$ctrl.aumentar();">+</button>
                 <br/><br/>
-                <button style="width: 100%" ng-click="$ctrl.decrementar();">-</button>
-            </p>
+                <button class="btn btn-danger" style="width: 100%" ng-click="$ctrl.decrementar();">-</button>
+            </div>
         </form>
-        <h1>Total:</h1>
-        <p>Llevamos acumulados un total de {{$ctrl.total}}</p>
-
-        <div id="divOculto" ng-show="$ctrl.visible">
-            <h1><p><b>WIN!!!</b></p></h1>
-            <img src="./icono.jpg" />
+        <div class="form-group">
+            <h1>Total:</h1>
+            <p>Llevamos acumulados un total de <h3><strong>{{$ctrl.total}}</strong></h3></p>
+        </div>
+        <div id="divOculto" class="media-right" ng-show="$ctrl.visible">
+            <h1 class="media-object"><p><b>WIN!!!</b></p></h1>
+            <img src="./icono.jpg" class="media-object"/>
         </div>
         <br/><br/>
-        <ng-include src="'../footer_generic.html'"></ng-include>
+        <div class="form-group">
+            <article class="panel panel-info">
+                <ng-include src="'../footer_generic.html'"></ng-include>
+            </article>
+        </div>
     </body>
 </html>

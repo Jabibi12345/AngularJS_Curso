@@ -7,7 +7,12 @@ class AppPensamientoController{
 
     anadirPensamiento(pensamiento){
         this.aPensamientos.push(pensamiento);
+        this.pensamiento = "";
     }
+
+    removeItem (index) {
+        this.aPensamientos.splice(index, 1);
+    };
 
 };
 
